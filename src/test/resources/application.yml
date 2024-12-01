@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: patient-record-service
+  datasource:
+    username: sa
+    password:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;IGNORECASE=TRUE;
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database: h2
+    database-platform: org.hibernate.dialect.H2Dialect
+
+server:
+  port: 3054
+  servlet:
+    context-path: /api

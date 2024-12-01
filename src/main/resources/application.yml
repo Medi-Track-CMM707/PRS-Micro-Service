@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: patient-record-service
+  datasource:
+    username: ${DB_USER_NAME}
+    password: ${DB_PASSWORD}
+    url: ${DB_URL}
+    hikari:
+      minimum-idle: 10
+      maximum-pool-size: 100
+      connection-timeout: 30000  # 30 seconds
+      idle-timeout: 6000000      # 100 minutes
+      max-lifetime: 300000      # 5 minutes
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        default_schema: patient_record
+  profiles:
+    active: local
+
+server:
+  port: 3054
+  servlet:
+    context-path: /api
+
+debug: false
+
+logging:
+  pattern:
+    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%highlight(%-5level)) %clr(${PID}){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n"
+  level:
+    root: info
+
+
+springdoc:
+  swagger-ui:
+    config-url: /api/v3/api-docs/swagger-config
+    url: /api/v3/api-docs
