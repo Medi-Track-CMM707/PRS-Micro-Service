@@ -37,7 +37,7 @@ public class HeaderInterceptor implements HandlerInterceptor {
         } catch (Exception e) {
             log.error("Error while setting the tenant details to the context.", e);
             String headerPath = request.getRequestURI();
-            if (headerPath.contains("/api/swagger-ui.html") || headerPath.contains("/api/v3/api-docs") || headerPath.contains("/api/swagger-ui/")) {
+            if (headerPath.contains("/prs/swagger-ui.html") || headerPath.contains("/prs/v3/api-docs") || headerPath.contains("/prs/swagger-ui/")) {
                 return true;
             }
             throw new PrsInvalidRequestException(ErrorCode.PRM_003002, "Invalid header details/ header details are missing. x-hospital and x-user are mandatory headers.");
