@@ -19,8 +19,6 @@ spring:
     properties:
       hibernate:
         default_schema: patient_record
-  profiles:
-    active: local
 
 server:
   port: 3054
