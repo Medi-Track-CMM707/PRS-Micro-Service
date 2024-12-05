@@ -28,7 +28,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn clean install -DDB_USER_NAME=${{ secrets.DB_USER_NAME }} -DDB_PASSWORD=${{ secrets.DB_PASSWORD }} -DDB_URL=${{ secrets.DB_URL }}
+      run: mvn clean install
 
     - name: Log in to DockerHub
       uses: docker/login-action@v2
