@@ -155,6 +155,7 @@
                 </executions>
             </plugin>
         </plugins>
+        <finalName>patient-record-service</finalName>
     </build>
 
 </project>
