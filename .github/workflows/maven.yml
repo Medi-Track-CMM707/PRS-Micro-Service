@@ -37,10 +37,10 @@ jobs:
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
 
     - name: Build Docker image
-      run: docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/patient-record-service:0.0.1 .
+      run: docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/patient-record-service:0.0.2 .
 
     - name: Push Docker image to DockerHub
-      run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/patient-record-service:0.0.1
+      run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/patient-record-service:0.0.2
 
   deploy:
     runs-on: ubuntu-latest
