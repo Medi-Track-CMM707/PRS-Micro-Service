@@ -34,7 +34,6 @@ build/
 
 .jpb
 
-K8s
 logs
 
 qodana.yaml
