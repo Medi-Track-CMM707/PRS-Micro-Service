@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://medi-track.cfw6m8ce6t0w.us-east-1.rds.amazonaws.com:5432/medi_track?currentSchema=reservation
+    url: jdbc:postgresql://medi-track.cfw6m8ce6t0w.us-east-1.rds.amazonaws.com:5432/medi_track?currentSchema=patient_record
     username: postgres
     password: M*A&5HQ%v;jKHU$
   jpa:
