@@ -23,7 +23,7 @@ spring:
     active: local
 
 server:
-  port: 8080
+  port: 3054
   servlet:
     context-path: /prs
 
