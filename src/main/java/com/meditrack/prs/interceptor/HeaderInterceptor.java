@@ -31,18 +31,26 @@ public class HeaderInterceptor implements HandlerInterceptor {
         // Extract details from the header
         String hospital = request.getHeader("x-hospital");
         String user = request.getHeader("x-user");
-        // Set the details to the context
-        try {
-            headerReadService.setHeaderDetailsToContext(Long.parseLong(hospital), user);
-        } catch (Exception e) {
-            log.error("Error while setting the tenant details to the context.", e);
-            String headerPath = request.getRequestURI();
-            if (headerPath.contains("/prs/swagger-ui.html") || headerPath.contains("/prs/v3/api-docs") || headerPath.contains("/prs/swagger-ui/")) {
-                return true;
-            }
-            throw new PrsInvalidRequestException(ErrorCode.PRM_003002, "Invalid header details/ header details are missing. x-hospital and x-user are mandatory headers.");
+
+        // Set default values if headers are missing or invalid
+        if (hospital == null || hospital.isEmpty()) {
+            hospital = "101";  // Default hospital ID
         }
+
+        if (user == null || user.isEmpty()) {
+            user = "admin";  // Default user
+        }
+
+        try {
+            // Parse hospital id and set header details to context
+            headerReadService.setHeaderDetailsToContext(Long.parseLong(hospital), user);
+        } catch (NumberFormatException e) {
+            log.error("Error while setting the tenant details to the context. Invalid hospital ID: " + hospital, e);
+            throw new ReservationInvalidRequestException(ErrorCode.PRM_003002, "Invalid hospital ID in the 'x-hospital' header.");
+        }
+
         return true;
     }
+
 }
 
