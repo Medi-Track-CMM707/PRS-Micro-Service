@@ -46,7 +46,7 @@ public class HeaderInterceptor implements HandlerInterceptor {
             headerReadService.setHeaderDetailsToContext(Long.parseLong(hospital), user);
         } catch (NumberFormatException e) {
             log.error("Error while setting the tenant details to the context. Invalid hospital ID: " + hospital, e);
-            throw new ReservationInvalidRequestException(ErrorCode.PRM_003002, "Invalid hospital ID in the 'x-hospital' header.");
+            throw new PrsInvalidRequestException(ErrorCode.PRM_003002, "Invalid hospital ID in the 'x-hospital' header.");
         }
 
         return true;
