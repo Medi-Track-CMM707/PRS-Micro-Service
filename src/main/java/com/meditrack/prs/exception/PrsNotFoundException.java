@@ -4,7 +4,7 @@ import com.meditrack.prs.constant.ErrorCode;
 import lombok.Getter;
 
 @Getter
-public class PrsNotFoundException extends Exception {
+public class PrsNotFoundException extends RuntimeException {
     private final ErrorCode errorCode;
 
     public PrsNotFoundException(ErrorCode errorCode, String message) {
@@ -12,3 +12,20 @@ public class PrsNotFoundException extends Exception {
         this.errorCode = errorCode;
     }
 }
+
+
+
+// package com.meditrack.prs.exception;
+
+// import com.meditrack.prs.constant.ErrorCode;
+// import lombok.Getter;
+
+// @Getter
+// public class PrsNotFoundException extends Exception {
+//     private final ErrorCode errorCode;
+
+//     public PrsNotFoundException(ErrorCode errorCode, String message) {
+//         super(message);
+//         this.errorCode = errorCode;
+//     }
+// }

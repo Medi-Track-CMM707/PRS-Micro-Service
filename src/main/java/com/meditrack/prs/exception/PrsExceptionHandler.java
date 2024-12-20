@@ -23,7 +23,6 @@ import java.util.Map;
 @Slf4j
 public class PrsExceptionHandler extends ResponseEntityExceptionHandler {
 
-
     @ExceptionHandler({Exception.class})
     public ResponseEntity<ErrorResponseDTO> handlePatientInternalServerException(Exception e) {
         log.error("An error occurred in Exception", e);
@@ -34,6 +33,26 @@ public class PrsExceptionHandler extends ResponseEntityExceptionHandler {
         ), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    @ExceptionHandler({PrsNotFoundException.class})
+    public ResponseEntity<ErrorResponseDTO> handlePrsNotFoundException(PrsNotFoundException e) {
+        log.error("Patient not found", e);
+        return new ResponseEntity<>(new ErrorResponseDTO(
+                e.getErrorCode().name(),
+                e.getErrorCode().getMessage(),
+                e.getMessage()
+        ), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler({PrsInvalidRequestException.class})
+    public ResponseEntity<ErrorResponseDTO> handlePrsInvalidRequestException(PrsInvalidRequestException e) {
+        log.error("Invalid request", e);
+        return new ResponseEntity<>(new ErrorResponseDTO(
+                e.getErrorCode().name(),
+                e.getErrorCode().getMessage(),
+                e.getMessage()
+        ), HttpStatus.BAD_REQUEST);
+    }
+    
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
             MethodArgumentNotValidException ex, @Nullable HttpHeaders headers, @Nullable HttpStatusCode status, @Nullable WebRequest request) {
